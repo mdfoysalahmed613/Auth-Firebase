@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { motion, useRef, useEffect, useCallback } from 'react';
 
 const ClickSpark = ({
   sparkColor = '#fff',
