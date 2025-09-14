@@ -39,7 +39,7 @@ export default function Home() {
           Welcome to My App
         </h1>
         <p className="mt-4 text-lg md:text-xl  max-w-2xl">
-          This is a simple landing page with particles, a navbar, and centered text.
+          This is a simple Authentication project with Firebase. The most secure lighting serverless web app.
         </p>
       </div>
     </div>
