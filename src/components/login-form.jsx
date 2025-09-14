@@ -52,10 +52,10 @@ const LoginForm = ({ className, ...props }) => {
   };
   const handlegooglePopUp = () => {
     googlePopUp()
-      .then((result) => {
+      .then(() => {
         navigate("/");
         setLoading(false);
-        console.log(result.user);
+        
         toast.success("Login Successful");
       })
       .catch((error) => {

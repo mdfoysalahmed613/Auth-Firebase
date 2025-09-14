@@ -62,7 +62,7 @@ export default function ProfileUpdate() {
       );
       const uploadedUrl = response.data.secure_url;
       setPhotoURL(uploadedUrl);
-      console.log("uploaded URL",uploadedUrl)
+      
       await updateInfo(user, name, uploadedUrl)
 
     }

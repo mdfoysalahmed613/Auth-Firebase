@@ -51,7 +51,7 @@ export default function NavBar() {
   }
 
   return (
-    <nav className="flex absolute z-10 top-0 w-full px-56 justify-between items-center py-4">
+    <nav className="flex absolute z-10 top-0 w-full px-4 md:px-56 justify-between items-center py-4">
       <div>
         <Link className="text-2xl font-bold" to="/">Authentication</Link>
       </div>
@@ -99,7 +99,7 @@ export default function NavBar() {
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <div className="flex gap-3">
+          <div className="flex gap-1 md:gap-3">
             <Button onClick={() => navigate("/login")} variant="outline">
               Login
             </Button>

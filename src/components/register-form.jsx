@@ -40,10 +40,10 @@ const RegisterForm = ({ className, ...props }) => {
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+    
     createUser(email, password)
       .then((data) => {
-        console.log(data.user);
+        
         updateInfo(data.user, name,"")
           .then(() => {
             navigate("/");
@@ -64,15 +64,15 @@ const RegisterForm = ({ className, ...props }) => {
   };
   const handlegooglePopUp = ()=>{
     googlePopUp()
-    .then(result=>{
+    .then(()=>{
       navigate('/')
       setLoading(false)
-      console.log(result.user)
+      
       toast.success("Signed in successfully");
     })
-    .catch(error=>{
+    .catch(()=>{
       setLoading(false)
-      console.log(error)
+      
       toast.error("Something went wrong. Please try again.")
     })
   }
