@@ -1,18 +1,18 @@
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
-import { useContext } from "react"
-import ThemeContext from "@/Context/ThemeContext"
+import { useContext } from "react";
+import ThemeContext from "@/Context/Theme/ThemeContext";
 
 export function ThemeToggle() {
-  const { setTheme } = useContext(ThemeContext)
+  const { setTheme } = useContext(ThemeContext);
 
   return (
     <DropdownMenu>
@@ -35,5 +35,5 @@ export function ThemeToggle() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

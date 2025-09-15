@@ -28,17 +28,15 @@ const ThemeProvider = ({
     root.classList.add(theme);
   }, [theme]);
 
-
   const setTheme = (newTheme) => {
     localStorage.setItem(storageKey, newTheme);
     setThemeState(newTheme);
   };
-  return <ThemeContext {...props} value={{theme,setTheme}}>
-    {children}
-  </ThemeContext>
-
+  return (
+    <ThemeContext {...props} value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext>
+  );
 };
 
 export default ThemeProvider;
-
-

@@ -1,11 +1,11 @@
-import LoginForm from "@/components/login-form";
-import AuthContext from "@/Context/AuthContext";
+import LoginForm from "@/components/Shared/login-form";
+import { useAuth } from "@/Context/Auth";
 import { Loader2 } from "lucide-react";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 export default function Login() {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
     if (!loading && user) {

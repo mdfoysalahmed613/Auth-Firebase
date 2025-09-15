@@ -6,21 +6,21 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import AuthContext from "@/Context/AuthContext";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Label } from "@radix-ui/react-label";
 import { Loader2, Upload, X } from "lucide-react";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { MagicCard } from "./magicui/magic-card";
-import ThemeContext from "@/Context/ThemeContext";
-import { Button } from "./ui/button";
+import { MagicCard } from "../magicui/magic-card";
+import ThemeContext from "@/Context/Theme/ThemeContext";
+import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { useFileUpload } from "@/components/magicui/use-file-upload";
 import axios from "axios";
+import { useAuth } from "@/Context/Auth";
 
 export default function ProfileUpdate() {
-  const { user, updateInfo } = useContext(AuthContext);
+  const { user, updateInfo } = useAuth();
   const { theme } = useContext(ThemeContext);
   const [updatingProfile, setUpdatingProfile] = useState(false);
   const navigate = useNavigate();
@@ -52,29 +52,27 @@ export default function ProfileUpdate() {
     e.preventDefault();
     try {
       if (name !== user?.displayName || files[0]) {
-      const formData = new FormData();
-      formData.append("file", files[0].file);
-      formData.append("upload_preset", "Authentication"); // replace this
+        const formData = new FormData();
+        formData.append("file", files[0].file);
+        formData.append("upload_preset", "Authentication"); // replace this
 
-      const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dnvekgesb/image/upload`,
-        formData
-      );
-      const uploadedUrl = response.data.secure_url;
-      setPhotoURL(uploadedUrl);
-      
-      await updateInfo(user, name, uploadedUrl)
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/dnvekgesb/image/upload`,
+          formData
+        );
+        const uploadedUrl = response.data.secure_url;
+        setPhotoURL(uploadedUrl);
 
-    }
-    await user.reload();
-    toast.success("Profile updated successfully")
+        await updateInfo(user, name, uploadedUrl);
+      }
+      await user.reload();
+      toast.success("Profile updated successfully");
     } catch (error) {
-      console.log(error)
-      toast.error("Cant update profile")
-    }finally{
-      setUpdatingProfile(false)
+      console.log(error);
+      toast.error("Cant update profile");
+    } finally {
+      setUpdatingProfile(false);
     }
-    
   };
 
   return (

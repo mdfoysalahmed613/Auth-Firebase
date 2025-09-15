@@ -1,12 +1,11 @@
-
-import RegisterForm from "@/components/register-form";
-import AuthContext from "@/Context/AuthContext";
+import RegisterForm from "@/components/Shared/register-form";
+import { useAuth } from "@/Context/Auth";
 import { Loader2 } from "lucide-react";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 export default function Register() {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
     if (!loading && user) {
@@ -22,12 +21,10 @@ export default function Register() {
     );
   }
   return (
-
-      <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-        <div className="w-full max-w-sm">
-          <RegisterForm />
-        </div>
+    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-sm">
+        <RegisterForm />
       </div>
-
+    </div>
   );
 }

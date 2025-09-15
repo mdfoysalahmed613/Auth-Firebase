@@ -1,12 +1,7 @@
-import AuthContext from "@/Context/AuthContext";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"; // ✅ use shadcn wrapper, not radix directly
-import React, { useContext } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import React from "react";
 import { Link, useNavigate } from "react-router";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,18 +11,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  BadgeAlert,
-  Loader2,
-  LogOut,
-  User,
-} from "lucide-react";
+import { BadgeAlert, Loader2, LogOut, User } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { toast } from "sonner";
+import { useAuth } from "@/Context/Auth";
 
 export default function NavBar() {
-  const { user, loading, setLoading, verifyEmail, logout } =
-    useContext(AuthContext);
+  const { user, loading, setLoading, verifyEmail, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleVerifyEmail = () => {
@@ -53,7 +43,9 @@ export default function NavBar() {
   return (
     <nav className="flex absolute z-10 top-0 w-full px-4 md:px-56 justify-between items-center py-4">
       <div>
-        <Link className="text-2xl font-bold" to="/">Authentication</Link>
+        <Link className="text-2xl font-bold" to="/">
+          Authentication
+        </Link>
       </div>
 
       <div className="flex gap-3">
@@ -92,7 +84,7 @@ export default function NavBar() {
                 )}
               </DropdownMenuGroup>
 
-              <DropdownMenuItem onClick={() => logout()}>
+              <DropdownMenuItem variant="destructive" onClick={() => logout()}>
                 <LogOut />
                 Log out
               </DropdownMenuItem>

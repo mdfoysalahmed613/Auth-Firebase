@@ -10,8 +10,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import auth from "@/Config/firebase";
-import AuthContext from "@/Context/AuthContext";
-import ThemeContext from "@/Context/ThemeContext";
+
+import ThemeContext from "@/Context/Theme/ThemeContext";
+import { useAuth } from "@/Context/Auth";
 import { confirmPasswordReset, verifyPasswordResetCode } from "firebase/auth";
 import { Eye, EyeOff, Ghost, Loader2 } from "lucide-react";
 import React, { useContext, useEffect, useState } from "react";
@@ -19,8 +20,8 @@ import { useNavigate, useSearchParams } from "react-router";
 import { toast } from "sonner";
 
 export default function ResetPassword() {
-  const { loading, user, setLoading } = useContext(AuthContext);
-  const {theme} = useContext(ThemeContext)
+  const { loading, user, setLoading } = useAuth();
+  const { theme } = useContext(ThemeContext);
   const [showPassword, setShowPassword] = useState(false);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();

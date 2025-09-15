@@ -11,11 +11,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router";
 import { useContext, useState } from "react";
-import AuthContext from "@/Context/AuthContext";
 import { toast } from "sonner";
 import { Eye, EyeOff, Ghost, Loader2 } from "lucide-react";
-import ThemeContext from "@/Context/ThemeContext";
-import { MagicCard } from "./magicui/magic-card";
+import ThemeContext from "@/Context/Theme/ThemeContext";
+import { MagicCard } from "../magicui/magic-card";
+import { useAuth } from "@/Context/Auth";
 
 const LoginForm = ({ className, ...props }) => {
   const { theme } = useContext(ThemeContext);
@@ -29,8 +29,7 @@ const LoginForm = ({ className, ...props }) => {
         return "Something went wrong. Please try again.";
     }
   };
-  const { loginUser, loading, googlePopUp, setLoading } =
-    useContext(AuthContext);
+  const { loginUser, loading, googlePopUp, setLoading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const handleLogin = (e) => {
@@ -55,7 +54,7 @@ const LoginForm = ({ className, ...props }) => {
       .then(() => {
         navigate("/");
         setLoading(false);
-        
+
         toast.success("Login Successful");
       })
       .catch((error) => {
