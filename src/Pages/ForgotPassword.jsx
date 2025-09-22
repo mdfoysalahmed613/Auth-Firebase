@@ -9,14 +9,14 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import ThemeContext from "@/Context/Theme/ThemeContext";
 import { useAuth } from "@/Context/Auth";
 import { Loader2 } from "lucide-react";
-import React, { useContext } from "react";
+import React from "react";
 import { toast } from "sonner";
+import { useTheme } from "@/Context/Theme";
 
 export default function ForgotPassword() {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   const { sendResetEmail, loading, setLoading } = useAuth();
   const handleSendResetEmail = (e) => {
     e.preventDefault();

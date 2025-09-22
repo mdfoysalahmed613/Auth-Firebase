@@ -10,15 +10,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router";
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import { toast } from "sonner";
 import { Eye, EyeOff, Ghost, Loader2 } from "lucide-react";
-import ThemeContext from "@/Context/Theme/ThemeContext";
+
 import { MagicCard } from "../magicui/magic-card";
 import { useAuth } from "@/Context/Auth";
+import { useTheme } from "@/Context/Theme";
 
 const LoginForm = ({ className, ...props }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   const getLoginErrorMessage = (code) => {
     switch (code) {
       case "auth/too-many-requests":
@@ -163,7 +164,7 @@ const LoginForm = ({ className, ...props }) => {
                         ></path>
                       </g>
                     </svg>
-                    Login with Google
+                    Continue with Google
                   </Button>
                 </div>
               </div>

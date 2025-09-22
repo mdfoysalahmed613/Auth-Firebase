@@ -14,15 +14,16 @@ import { Link, useNavigate } from "react-router";
 import { useContext, useState } from "react";
 import { Eye, EyeOff, Ghost, Loader2 } from "lucide-react";
 import { MagicCard } from "@/components/magicui/magic-card";
-import ThemeContext from "@/Context/Theme/ThemeContext";
+
 import { useAuth } from "@/Context/Auth";
+import { useTheme } from "@/Context/Theme";
 
 const RegisterForm = ({ className, ...props }) => {
-  const { loading, createUser, setLoading, googlePopUp, updateInfo } =
+  const { loading, createUser, setLoading, googlePopUp, updateName } =
     useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
 
   const getFriendlyError = (code) => {
     switch (code) {
@@ -44,7 +45,7 @@ const RegisterForm = ({ className, ...props }) => {
 
     createUser(email, password)
       .then((data) => {
-        updateInfo(data.user, name, "")
+        updateName(data.user, name)
           .then(() => {
             navigate("/");
             setLoading(false);
@@ -179,7 +180,7 @@ const RegisterForm = ({ className, ...props }) => {
                         ></path>
                       </g>
                     </svg>
-                    Sign Up with Google
+                    Continue with Google
                   </Button>
                 </div>
               </div>

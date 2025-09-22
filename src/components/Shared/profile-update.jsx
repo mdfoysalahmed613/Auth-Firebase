@@ -9,19 +9,20 @@ import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Label } from "@radix-ui/react-label";
 import { Loader2, Upload, X } from "lucide-react";
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import { useNavigate } from "react-router";
 import { MagicCard } from "../magicui/magic-card";
-import ThemeContext from "@/Context/Theme/ThemeContext";
+
 import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { useFileUpload } from "@/components/magicui/use-file-upload";
 import axios from "axios";
 import { useAuth } from "@/Context/Auth";
+import { useTheme } from "@/Context/Theme";
 
 export default function ProfileUpdate() {
   const { user, updateInfo } = useAuth();
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme()
   const [updatingProfile, setUpdatingProfile] = useState(false);
   const navigate = useNavigate();
 
@@ -63,7 +64,7 @@ export default function ProfileUpdate() {
         const uploadedUrl = response.data.secure_url;
         setPhotoURL(uploadedUrl);
 
-        await updateInfo(user, name, uploadedUrl);
+        await updateInfo(name, uploadedUrl);
       }
       await user.reload();
       toast.success("Profile updated successfully");

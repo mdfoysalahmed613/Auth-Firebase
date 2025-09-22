@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { Outlet } from "react-router";
 import { Toaster } from "sonner";
 import ClickSpark from "./components/magicui/ClickSpark";
-import ThemeContext from "./Context/Theme/ThemeContext";
+import { useTheme } from "./Context/Theme";
+
 
 export default function App() {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <ClickSpark
       sparkColor={theme === "dark" ? "#fff" : "#2B2B2B"}

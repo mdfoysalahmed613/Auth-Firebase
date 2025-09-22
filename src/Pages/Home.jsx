@@ -1,13 +1,14 @@
 import Particles from "@/components/magicui/Particles";
 import NavBar from "@/components/Shared/nav-bar";
-import ThemeContext from "@/Context/Theme/ThemeContext";
+
 import { useAuth } from "@/Context/Auth";
 import { Loader2 } from "lucide-react";
 import React, { useContext } from "react";
+import { useTheme } from "@/Context/Theme";
 
 export default function Home() {
   const { loading } = useAuth();
-  const { theme } = useContext(ThemeContext);
+  const { darkMode } = useTheme();
   if (loading) {
     return (
       <div className="flex min-h-screen w-full items-center justify-center">
@@ -19,7 +20,7 @@ export default function Home() {
   return (
     <div className="w-full h-screen relative overflow-hidden">
       {/* Particles */}
-      {theme === "dark" && (
+      {(darkMode) && (
         <Particles
           particleCount={400}
           particleSpread={10}

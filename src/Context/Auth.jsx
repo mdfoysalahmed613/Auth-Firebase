@@ -27,12 +27,18 @@ function AuthProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const updateInfo = (user, name, uploadedUrl) => {
+  const updateInfo = (name, uploadedUrl) => {
     return updateProfile(user, {
       displayName: name,
       photoURL: uploadedUrl,
     });
   };
+
+  const updateName =(user,name)=>{
+    return updateProfile(user,{
+      displayName: name
+    })
+  }
 
   const googlePopUp = () => {
     setLoading(true);
@@ -68,6 +74,7 @@ function AuthProvider({ children }) {
     createUser,
     loginUser,
     updateInfo,
+    updateName,
     logout,
     sendResetEmail,
     googlePopUp,
